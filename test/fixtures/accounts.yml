@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account_number: MyString
+  name: MyString
+  account_holder_number: 1
+  balance: 
+  address: MyString
+  account_type: MyString
+
+two:
+  account_number: MyString
+  name: MyString
+  account_holder_number: 1
+  balance: 
+  address: MyString
+  account_type: MyString
