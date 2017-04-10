@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
-  resources :transactions
-  get 'transaction/withdraw'
+  
+  
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  get 'transactions/withdraw'
 
-  get 'transaction/deposit'
+  get 'transactions/deposit'
+  
+  post 'transactions/do_withdraw'
 
+  post 'transactions/do_deposit'
   #devise_for :users
-  resources :accounts
+  resources :accounts do
+    resources :transactions
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root :to => 'accounts#index'
+  root :to => 'accounts#show'
   
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
 

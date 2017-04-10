@@ -1,6 +1,47 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
+
+  def withdraw
+    @account = Account.find(params[:account_id])
+  end
+
+  def do_withdraw  
+
+    @account = Account.find(params[:account_id])
+
+    respond_to do |format|
+      if @account.withdrawal(params[:withdraw_amount])
+        format.html { redirect_to @account, notice: 'Transaction successfull..' }
+        format.json { render :show, status: :ok, location: @account }
+      else
+        format.html { render :edit }
+        format.json { render json: @account.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+  def deposit 
+    @account = Account.find(params[:account_id])
+  end
+
+
+  def do_deposit
+    @account = Account.find(params[:account_id])
+
+    respond_to do |format|
+      if @account.deposit(params[:deposit_amount])
+        format.html { redirect_to @account, notice: 'Ammount credited successfull..' }
+        format.json { render :show, status: :ok, location: @account }
+      else
+        format.html { render :edit }
+        format.json { render json: @account.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
   # GET /transactions
   # GET /transactions.json
   def index
@@ -70,5 +111,6 @@ class TransactionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
       params.fetch(:transaction, {})
+      params.fetch(:account, {})
     end
 end

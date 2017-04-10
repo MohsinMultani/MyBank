@@ -1,34 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Account number:</strong>
-  <%= @account.account_number %>
-</p>
+<table>
+  <thead>
+  <tr>
+    <th>Account number |</th>
+    <th>Name |</th>
+    <th>Account holder number |</th>
+    <th>Balance |</th>
+    <th>Address |</th>
+    <th>Account type</th>
+  </tr>
+  </thead>
 
-<p>
-  <strong>Name:</strong>
-  <%= @account.name %>
-</p>
+  <tbody>
+    <tr>
+      <td><%= @account.account_number %></td>
+      <td><%= @account.name %></td>
+      <td> <%= @account.account_holder_number %></td>
+      <td><%= @account.balance %></td>
+      <td><%= @account.address %></td>
+      <td><%= @account.account_type %></td>
+    </tr>
+  </tbody>
+</table>  
 
-<p>
-  <strong>Account holder number:</strong>
-  <%= @account.account_holder_number %>
-</p>
 
-<p>
-  <strong>Balance:</strong>
-  <%= @account.balance %>
-</p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @account.address %>
-</p>
 
-<p>
-  <strong>Account type:</strong>
-  <%= @account.account_type %>
-</p>
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %>
