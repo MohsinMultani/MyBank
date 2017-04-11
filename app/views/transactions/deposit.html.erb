@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<% if @account.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@account.errors.count, "error") %></h2>
+ 
+    <ul>
+    <% @account.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <p>
   <strong>Account number:</strong>
   <%= @account.account_number %>
@@ -45,4 +57,4 @@
     <input type="submit">
   </form> 
 
-<%= link_to 'Back', accounts_path %>
+<%= link_to 'Back', root_path %>

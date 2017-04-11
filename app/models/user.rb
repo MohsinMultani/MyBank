@@ -16,9 +16,10 @@ class User < ApplicationRecord
   def default_account
     
     account = Account.new
-    account.account_number = 001
-    account.balance = 7896
+    account.account_number = rand.to_s[2..11]
+    account.balance = 0
     account.user_id = self.id
+    account.account_type = "saving"
     account.save
   end
 end

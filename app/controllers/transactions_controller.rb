@@ -15,7 +15,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to @account, notice: 'Transaction successfull..' }
         format.json { render :show, status: :ok, location: @account }
       else
-        format.html { render :edit }
+        format.html { render :withdraw }
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
     end
@@ -35,7 +35,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to @account, notice: 'Ammount credited successfull..' }
         format.json { render :show, status: :ok, location: @account }
       else
-        format.html { render :edit }
+        format.html { render :deposit }
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
     end

@@ -1,13 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<table>
+<% if @account.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@account.errors.count, "error") %></h2>
+ 
+    <ul>
+    <% @account.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<table class="table table-bordered">
   <thead>
   <tr>
-    <th>Account number |</th>
-    <th>Name |</th>
-    <th>Account holder number |</th>
-    <th>Balance |</th>
-    <th>Address |</th>
+    <th>Account number</th>
+    <th>Name</th>
+    <th>Account holder number</th>
+    <th>Balance</th>
+    <th>Address</th>
     <th>Account type</th>
   </tr>
   </thead>
@@ -20,13 +33,13 @@
       <td><%= @account.balance %></td>
       <td><%= @account.address %></td>
       <td><%= @account.account_type %></td>
+      <td><%= link_to 'Show', root_path %></td>
+      <td><%= link_to 'Edit', edit_account_path(@account) %></td>
+      <td><%= link_to 'Withdraw', transactions_withdraw_path(account_id: @account.id) %></td>
+      <td><%= link_to 'Deposit',  transactions_deposit_path(account_id: @account.id) %></td>
+      <td><%= link_to 'Transactions', account_transactions_path(account_id: @account.id) %></td>
     </tr>
   </tbody>
 </table>  
 
-
-
-
-
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<%= link_to 'Back', root_path %>
