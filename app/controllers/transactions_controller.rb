@@ -45,12 +45,14 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
+    @account = current_user.account
     @transactions = Transaction.all
   end
 
   # GET /transactions/1
   # GET /transactions/1.json
   def show
+
   end
 
   # GET /transactions/new

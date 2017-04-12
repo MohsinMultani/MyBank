@@ -10,49 +10,37 @@
     </ul>
   </div>
 <% end %>
-<p>
-  <strong>Account number:</strong>
-  <%= @account.account_number %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @account.id %>
-</p>
-
-<p>
-  <strong>Account holder number:</strong>
-  <%= @account.account_holder_number %>
-</p>
-
-<p>
-  <strong>Balance:</strong>
-  <%= @account.balance %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @account.address %>
-</p>
-
-<p>
-  <strong>Account type:</strong>
-  <%= @account.account_type %>
-</p>
 
 
-  <form action="<%=transactions_do_withdraw_path %>" method="post" >
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-  
-   <input type="hidden" name="account_id" value="<%= @account.id %>">
 
-    Total Balance:
-    <%= @account.balance %>
-    <br><br>
-    Ammount To Withdraw
-    <input type="text" name="withdraw_amount" value="<%= @account.balance %>"><br>
 
-    <input type="submit">
-  </form> 
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>Account number</th>
+    <th>Total Balance</th>
+  </tr>
+  </thead>
 
+  <tbody>
+    <tr>
+      <td><%= @account.account_number %></td>
+      <td><%= @account.balance %></td>
+    </tr>
+  </tbody>
+
+</table>
+
+  <div class="form-inline">
+    <form action="<%=transactions_do_withdraw_path %>" method="post" >
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+      <input type="hidden" name="account_id" value="<%= @account.id %>">
+      <br><br>
+      <h4><span class="label label-default">Enter Amount For Withdrawal</span></h4>
+      <input type="text" name="withdraw_amount" class="form-control" value="<%= @account.balance %>">
+      <button class="btn btn-default" type="submit">Submit</button>
+    </form> 
+  </div>
+
+<br><br><br><br>
 <%= link_to 'Back', root_path %>

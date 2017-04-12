@@ -9,11 +9,64 @@
   </head>
 
   <body>
-
   <% if user_signed_in? %>
-      <%= link_to "Log out", sign_out_path %>
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="#">MyBank</a>
+
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li><%= link_to "Home" %></li>
+            <li><%= link_to "About" %></li>
+            <li><%= link_to "Contact Us" %></li>
+            <% if current_user.has_role? :admin %>
+               <li><%= link_to "Admin", "/admin" %></li>
+            <% end %>
+          </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Log out", sign_out_path %></li>
+        </ul>
+      </div>
+
+      </div>
+    </div>
   <% end %>
 
-    <%= yield %>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <%= yield %>
+      </div>
+      
+      <% if user_signed_in? %>
+        <div class="col-lg-3">
+          <div class="well sidebar-nav">
+            <h4>What You Want To do Today..?</h4>
+              <ul class="nav nav-list">
+                <li><%= link_to 'Withdraw', transactions_withdraw_path(account_id: @account.id) %></li>
+                <li><%= link_to 'Deposit',  transactions_deposit_path(account_id: @account.id) %></li>
+                <li><%= link_to 'Transactions', account_transactions_path(account_id: @account.id) %></li>
+                <li><%= link_to 'Edit', edit_account_path(@account) %></li>
+              </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+    </div><!--/row-->   
+      <% end %>
+  </div>
+  
+    <div class="footer">
+      <footer>
+        <!-- <p>&copy; Company <%= Date.today.year %></p> -->
+      </footer>
+    </div>
+
   </body>
 </html>
+

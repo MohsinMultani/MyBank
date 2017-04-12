@@ -12,49 +12,34 @@
   </div>
 <% end %>
 
-<p>
-  <strong>Account number:</strong>
-  <%= @account.account_number %>
-</p>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>Account number</th>
+    <th>Total Balance</th>
+  </tr>
+  </thead>
 
-<p>
-  <strong>Name:</strong>
-  <%= @account.id %>
-</p>
+  <tbody>
+    <tr>
+      <td><%= @account.account_number %></td>
+      <td><%= @account.balance %></td>
+    </tr>
+  </tbody>
 
-<p>
-  <strong>Account holder number:</strong>
-  <%= @account.account_holder_number %>
-</p>
-
-<p>
-  <strong>Balance:</strong>
-  <%= @account.balance %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @account.address %>
-</p>
-
-<p>
-  <strong>Account type:</strong>
-  <%= @account.account_type %>
-</p>
+</table>
 
 
-  <form action="<%=transactions_do_deposit_path %>" method="post" >
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-  
-   <input type="hidden" name="account_id" value="<%= @account.id %>">
+  <div class="form-inline">
+    <form action="<%=transactions_do_deposit_path %>" method="post" >
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+      <input type="hidden" name="account_id" value="<%= @account.id %>">
+      <br><br>
+      <h4><span class="label label-default">Enter Amount For Deposit</span></h4>
+      <input type="text" name="deposit_amount" class="form-control" value="<%= @account.balance %>">
+      <button class="btn btn-default" type="submit">Submit</button>
+    </form> 
+  </div>
 
-    Total Balance:
-    <%= @account.balance %>
-    <br><br>
-    Ammount To Deposit
-    <input type="text" name="deposit_amount" value="<%= @account.balance %>"><br>
-
-    <input type="submit">
-  </form> 
-
-<%= link_to 'Back', root_path %>
+  <br><br><br><br>
+  <%= link_to 'Back', root_path %>

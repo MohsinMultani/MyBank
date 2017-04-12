@@ -20,6 +20,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/edit
   def edit
+    @account = current_user.account
   end
 
   # POST /accounts
