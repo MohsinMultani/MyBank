@@ -36,7 +36,8 @@ gem 'rails_admin', '~> 1.1.1'
 
 gem "cancancan"
 
-
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

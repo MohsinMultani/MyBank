@@ -14,16 +14,18 @@
   <tbody>
     <% @transactions.each do |transaction| %>
       <tr>
-        <% if transaction.account.user_id.to_i == current_user.id %>
+        
           <td><%= transaction.account_id %></td>
           <td><%= transaction.transaction_type %></td>
           <td><%= transaction.transaction_amount %></td>
-        <% end %>
+        
 
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate @transactions, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination-sm" %>
+
 <br>
 
 <%= link_to 'Back', root_path %>

@@ -11,6 +11,11 @@ class Ability
         can :dashboard
       else
         can :read, :all
+        can :update, Account
+        can :withdraw, Transaction
+        can :do_withdraw, Transaction
+        can :deposit, Transaction
+        can :do_deposit, Transaction
       end
     #
     # The first argument to `can` is the action you are giving the user
