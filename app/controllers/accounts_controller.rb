@@ -1,6 +1,8 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: [:edit, :update, :destroy]
-
+  
+  load_and_authorize_resource
+  
   # GET /accounts
   # GET /accounts.json
   def index

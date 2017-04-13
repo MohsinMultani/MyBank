@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170410063110) do
     t.string   "account_type"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.string   "user_id"
+    t.integer  "user_id"
   end
 
   create_table "roles", force: :cascade do |t|

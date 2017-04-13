@@ -11,13 +11,14 @@ Rails.application.routes.draw do
 
   post 'transactions/do_deposit'
   
+  root :to => 'accounts#show'
+
   #devise_for :users
   resources :accounts do
     resources :transactions
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root :to => 'accounts#show'
   
 
   devise_scope :user do
